@@ -539,6 +539,12 @@ def cli() -> None:
     help="Pairing strategy to use. Used only if --use_msa_server is set. Options are 'greedy' and 'complete'",
     default="greedy",
 )
+@click.option(
+    "--strategy",
+    type=str,
+    help="Strategy to use for prediction. Default is auto.",
+    default="auto",
+)
 def predict(
     data: str,
     out_dir: str,
@@ -559,6 +565,7 @@ def predict(
     use_msa_server: bool = False,
     msa_server_url: str = "https://api.colabfold.com",
     msa_pairing_strategy: str = "greedy",
+    strategy: str = "auto",
 ) -> None:
     """Run predictions with Boltz-1."""
     # If cpu, write a friendly warning
@@ -596,17 +603,14 @@ def predict(
         return
 
     # Set up trainer
-    strategy = "auto"
     if (isinstance(devices, int) and devices > 1) or (
         isinstance(devices, list) and len(devices) > 1
     ):
-        strategy = DDPStrategy()
-        if len(data) < devices:
-            msg = (
-                "Number of requested devices is greater "
-                "than the number of predictions."
-            )
-            raise ValueError(msg)
+        if strategy == "auto":
+            strategy = DDPStrategy()
+            if len(data) < devices:
+                msg = "Number of requested devices is greater than the number of predictions."
+                raise ValueError(msg)
 
     msg = f"Running predictions for {len(data)} structure"
     msg += "s" if len(data) > 1 else ""
@@ -677,6 +681,7 @@ def predict(
         accelerator=accelerator,
         devices=devices,
         precision=32,
+        use_distributed_sampler=False,
     )
 
     # Compute predictions

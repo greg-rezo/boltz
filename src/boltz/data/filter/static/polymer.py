@@ -162,7 +162,7 @@ class ConsecutiveCA(StaticFilter):
         return valid
 
 
-@dataclass(frozen=True)
+@dataclass
 class Clash:
     """A clash between two chains."""
 

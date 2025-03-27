@@ -26,7 +26,7 @@ from boltz.data.filter.static.polymer import (
 from boltz.data.types import ChainInfo, InterfaceInfo, Record, Target
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class PDB:
     """A raw MMCIF PDB file."""
 
@@ -102,8 +102,8 @@ def finalize(outdir: Path) -> None:
     if failed_count > 0:
         print(f"Failed to parse {failed_count} entries.")  # noqa: T201
     else:
-        print("All entries parsed successfully.")  
-    
+        print("All entries parsed successfully.")
+
     # Save manifest
     outpath = outdir / "manifest.json"
     with outpath.open("w") as f:

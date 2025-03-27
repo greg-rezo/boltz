@@ -26,7 +26,7 @@ from boltz.data.types import (
 ####################################################################################################
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class ParsedAtom:
     """A parsed atom object."""
 
@@ -39,7 +39,7 @@ class ParsedAtom:
     chirality: int
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class ParsedBond:
     """A parsed bond object."""
 
@@ -48,7 +48,7 @@ class ParsedBond:
     type: int
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class ParsedResidue:
     """A parsed residue object."""
 
@@ -64,7 +64,7 @@ class ParsedResidue:
     is_present: bool
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class ParsedChain:
     """A parsed chain object."""
 
@@ -75,7 +75,7 @@ class ParsedChain:
     sequence: list[str]
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class ParsedConnection:
     """A parsed connection object."""
 
@@ -87,7 +87,7 @@ class ParsedConnection:
     atom_index_2: str
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class ParsedStructure:
     """A parsed structure object."""
 
@@ -966,7 +966,7 @@ def parse_mmcif(  # noqa: C901, PLR0915, PLR0912
                         entity=entity.name,
                         residues=residues,
                         type=const.chain_type_ids["NONPOLYMER"],
-                        sequence=None
+                        sequence=None,
                     )
                 )
 

@@ -136,7 +136,7 @@ Interface = [
 ]
 
 
-@dataclass(frozen=True)
+@dataclass
 class Structure(NumpySerializable):
     """Structure datatype."""
 
@@ -314,7 +314,7 @@ MSASequence = [
 ]
 
 
-@dataclass(frozen=True)
+@dataclass
 class MSA(NumpySerializable):
     """MSA datatype."""
 
@@ -328,7 +328,7 @@ class MSA(NumpySerializable):
 ####################################################################################################
 
 
-@dataclass(frozen=True)
+@dataclass
 class StructureInfo:
     """StructureInfo datatype."""
 
@@ -355,7 +355,7 @@ class ChainInfo:
     entity_id: Optional[Union[str, int]] = None
 
 
-@dataclass(frozen=True)
+@dataclass
 class InterfaceInfo:
     """InterfaceInfo datatype."""
 
@@ -364,13 +364,13 @@ class InterfaceInfo:
     valid: bool = True
 
 
-@dataclass(frozen=True)
+@dataclass
 class InferenceOptions:
     binders: list[int]
     pocket: Optional[list[tuple[int, int]]]
 
 
-@dataclass(frozen=True)
+@dataclass
 class Record(JSONSerializable):
     """Record datatype."""
 
@@ -386,7 +386,7 @@ class Record(JSONSerializable):
 ####################################################################################################
 
 
-@dataclass(frozen=True)
+@dataclass
 class Target:
     """Target datatype."""
 
@@ -395,7 +395,7 @@ class Target:
     sequences: Optional[dict[str, str]] = None
 
 
-@dataclass(frozen=True)
+@dataclass
 class Manifest(JSONSerializable):
     """Manifest datatype."""
 
@@ -440,7 +440,7 @@ class Manifest(JSONSerializable):
 ####################################################################################################
 
 
-@dataclass(frozen=True)
+@dataclass
 class Input:
     """Input datatype."""
 
@@ -477,7 +477,7 @@ TokenBond = [
 ]
 
 
-@dataclass(frozen=True)
+@dataclass
 class Tokenized:
     """Tokenized datatype."""
 
